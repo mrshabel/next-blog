@@ -1,6 +1,9 @@
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
+  if (!process.env.NEXT_PUBLIC_BASE_API_URL) {
+    return null;
+  }
   const res = await fetch(
     process.env.NEXT_PUBLIC_BASE_API_URL + "/api/tickets"
   );
@@ -30,6 +33,9 @@ async function getTicket(id) {
 }
 
 export default async function TicketDetails({ params }) {
+  if (!process.env.NEXT_PUBLIC_BASE_API_URL) {
+    return null;
+  }
   const ticket = await getTicket(params.id);
 
   return (
