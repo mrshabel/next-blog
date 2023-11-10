@@ -1,4 +1,4 @@
-import Navlinks from "./NavLinks";
+import Navlinks from "./Navlinks";
 import ProfileButton from "./ProfileButton";
 
 export default function Navbar() {
