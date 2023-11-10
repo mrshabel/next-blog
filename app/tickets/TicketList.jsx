@@ -2,7 +2,7 @@ import Link from "next/link";
 
 async function getTickets() {
   try {
-    const res = await fetch("/api/tickets", {
+    const res = await fetch(process.env.API_URL + "/api/tickets", {
       next: {
         revalidate: 0,
       },
