@@ -7,7 +7,7 @@ export async function PUT({ params }) {
 
   const body = await request.json();
 
-  await Ticket.findByIdAndUpdate(params.id, body);
+  await Ticket.findByIdAndUpdate(params?.id, body);
 
   return NextResponse(
     { message: "New ticket added successfully" },
@@ -18,7 +18,7 @@ export async function PUT({ params }) {
 export async function GET(request, { params }) {
   await connectDb();
 
-  const ticket = await Ticket.findById(params.id);
+  const ticket = await Ticket.findById(params?.id);
 
   if (!ticket) {
     return NextResponse.json(
@@ -30,20 +30,20 @@ export async function GET(request, { params }) {
   return NextResponse.json(ticket);
 }
 
-export async function DELETE(request) {
-  const { searchParams } = new URL(request.url);
-  const id = searchParams.get("id");
+// export async function DELETE(request) {
+//   const { searchParams } = new URL(request.url);
+//   const id = searchParams.get("id");
 
-  await connectDb();
+//   await connectDb();
 
-  const ticket = await Ticket.findByIdAndDelete(id);
+//   const ticket = await Ticket.findByIdAndDelete(id);
 
-  if (!ticket) {
-    return NextResponse.json(
-      { message: "No matching ticket found" },
-      { status: 404 }
-    );
-  }
+//   if (!ticket) {
+//     return NextResponse.json(
+//       { message: "No matching ticket found" },
+//       { status: 404 }
+//     );
+//   }
 
-  return NextResponse.json({ message: "Ticket deleted successfully" });
-}
+//   return NextResponse.json({ message: "Ticket deleted successfully" });
+// }
