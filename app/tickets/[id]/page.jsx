@@ -9,7 +9,7 @@ export async function generateStaticParams() {
   );
   const data = await res.json();
 
-  const params = data.map((param) => ({ id: param.id }));
+  const params = data?.map((param) => ({ id: param.id }));
   return params;
 }
 
