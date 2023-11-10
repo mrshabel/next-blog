@@ -23,7 +23,8 @@ async function getTicket(id) {
     );
 
     if (!res.ok) {
-      return notFound();
+      //return notFound()
+      return undefined;
     }
 
     return res.json();
