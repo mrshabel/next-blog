@@ -19,6 +19,9 @@ async function getTickets() {
 }
 
 export default async function TicketList() {
+  if (!process.env.NEXT_PUBLIC_BASE_API_URL) {
+    return null;
+  }
   const tickets = await getTickets();
   return (
     <>

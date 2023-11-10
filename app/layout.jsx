@@ -1,7 +1,7 @@
 import { Raleway } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const raleway = Raleway({ subsets: ["latin"] });
 
@@ -12,13 +12,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
-      <html lang="en">
+    <html lang="en">
+      <ClerkProvider>
         <body className={raleway.className}>
+          {/* <Provider> */}
           <Navbar />
           {children}
+          {/* </Provider> */}
         </body>
-      </html>
-    </ClerkProvider>
+      </ClerkProvider>
+    </html>
   );
 }

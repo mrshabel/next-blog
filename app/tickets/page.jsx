@@ -2,7 +2,6 @@ import { Suspense } from "react";
 import TicketList from "./TicketList";
 import Loading from "../loading";
 import Link from "next/link";
-import { currentUser } from "@clerk/nextjs";
 
 export default async function Tickets() {
   return (

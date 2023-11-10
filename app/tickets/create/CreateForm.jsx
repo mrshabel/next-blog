@@ -26,13 +26,14 @@ export default function CreateForm() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
         body: JSON.stringify(ticket),
       });
       router.refresh();
       router.push("/tickets");
     } catch (error) {
-      alert("An error occured");
+      console.log("An error occured");
     } finally {
       setIsLoading(false);
     }

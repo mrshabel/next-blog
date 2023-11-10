@@ -4,38 +4,48 @@ export async function generateStaticParams() {
   const res = await fetch("/api/tickets");
   const data = await res.json();
 
-  const params = data.map((param) => ({ id: param.id }));
+  const params = data?.map((param) => ({ id: param.id }));
   return params;
 }
 
 async function getTicket(id) {
-  const res = await fetch(`/api/tickets/${id}`, {
-    next: { revalidate: 0 },
-  });
+  try {
+    const res = await fetch(`/api/tickets/${id}`, {
+      next: { revalidate: 0 },
+    });
 
-  if (!res.ok) {
-    return notFound();
+    if (!res.ok) {
+      return notFound();
+    }
+
+    return res.json();
+  } catch (error) {
+    console.log(error);
   }
-
-  return res.json();
 }
 
 export default async function TicketDetails({ params }) {
-  const ticket = await getTicket(params.id);
+  const ticket = await getTicket(params?.id);
 
   return (
     <main>
-      <nav>
-        <h2>Ticket Details</h2>
-      </nav>
-      <div className="card">
-        <h3>{ticket.title}</h3>
-        <small>Created by {ticket.user_email}</small>
-        <p>{ticket.body}</p>
-        <div className={`pill ${ticket.priority}`}>
-          {ticket.priority} priority
-        </div>
-      </div>
+      {!ticket || ticket.length === 0 ? (
+        <p>Sorry, no tickets available now</p>
+      ) : (
+        <>
+          <nav>
+            <h2>Ticket Details</h2>
+          </nav>
+          <div className="card">
+            <h3>{ticket.title}</h3>
+            <small>Created by {ticket.user_email}</small>
+            <p>{ticket.body}</p>
+            <div className={`pill ${ticket.priority}`}>
+              {ticket.priority} priority
+            </div>
+          </div>{" "}
+        </>
+      )}
     </main>
   );
 }

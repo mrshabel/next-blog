@@ -11,16 +11,17 @@ export default function Navlinks() {
   ];
 
   return (
-    <div className="flex gap-3">
+    <ul className="flex gap-3">
       {links.map((link) => (
-        <Link
-          key={link.href}
-          href={link.href}
-          className={`${path === link.href ? "text-black" : ""}`}
-        >
-          {link.title}
-        </Link>
+        <li key={link.href}>
+          <Link
+            href={link.href}
+            className={`${path === link.href ? "text-black" : ""}`}
+          >
+            {link.title}
+          </Link>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
