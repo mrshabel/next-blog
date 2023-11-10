@@ -37,7 +37,7 @@ export default async function TicketDetails({ params }) {
   if (!process.env.NEXT_PUBLIC_BASE_API_URL) {
     return null;
   }
-  const ticket = await getTicket(params.id);
+  const ticket = await getTicket(params?.id);
 
   return (
     <main>
