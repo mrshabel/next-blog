@@ -22,17 +22,18 @@ export default function CreateForm() {
     event.preventDefault();
     setIsLoading(true);
     try {
-      const res = await fetch(process.env.API_URL + "/api/tickets", {
+      const res = await fetch("/api/tickets", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Accept: "application/json",
         },
         body: JSON.stringify(ticket),
       });
       router.refresh();
       router.push("/tickets");
     } catch (error) {
-      alert("An error occured");
+      console.log("An error occured");
     } finally {
       setIsLoading(false);
     }

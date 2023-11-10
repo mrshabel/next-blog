@@ -2,11 +2,14 @@ import Link from "next/link";
 
 async function getTickets() {
   try {
-    const res = await fetch(process.env.API_URL + "/api/tickets", {
-      next: {
-        revalidate: 0,
-      },
-    });
+    const res = await fetch(
+      process.env.NEXT_PUBLIC_BASE_API_URL + "/api/tickets",
+      {
+        next: {
+          revalidate: 0,
+        },
+      }
+    );
 
     if (!res.ok) {
       throw new Error("Error fetching data");
