@@ -21,9 +21,8 @@ export default function CreateForm() {
   async function handleSubmit(event) {
     event.preventDefault();
     setIsLoading(true);
-    console.log(ticket);
     try {
-      const res = await fetch("/api/tickets", {
+      const res = await fetch(process.env.API_URL + "/api/tickets", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

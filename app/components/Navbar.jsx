@@ -1,16 +1,12 @@
-import Link from "next/link";
+import Navlinks from "./NavLinks";
+import ProfileButton from "./ProfileButton";
 
 export default function Navbar() {
   return (
-    <nav>
+    <nav className="flex justify-between">
       <h1>Shabel Helpdesk</h1>
-      <Link href="/">Dashboard</Link>
-      <Link href="/tickets">Tickets</Link>
-      <div className="block ml-12 ">
-        <Link href="/tickets/create">
-          <button className="btn-primary px-3">Create</button>
-        </Link>
-      </div>
+      <Navlinks />
+      <ProfileButton />
     </nav>
   );
 }

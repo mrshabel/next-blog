@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
-  const res = await fetch("http:localhost:3000/api/tickets");
+  const res = await fetch(process.env.API_URL + "/api/tickets");
   const data = await res.json();
 
   const params = data.map((param) => ({ id: param.id }));
@@ -9,8 +9,8 @@ export async function generateStaticParams() {
 }
 
 async function getTicket(id) {
-  const res = await fetch(`http:localhost:3000/api/tickets/${id}`, {
-    next: { revalidate: 60 },
+  const res = await fetch(`${process.env.API_URL}/api/tickets/${id}`, {
+    next: { revalidate: 0 },
   });
 
   if (!res.ok) {
@@ -21,7 +21,6 @@ async function getTicket(id) {
 }
 
 export default async function TicketDetails({ params }) {
-  console.log(params);
   const ticket = await getTicket(params.id);
 
   return (

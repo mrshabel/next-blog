@@ -9,7 +9,10 @@ export async function PUT({ params }) {
 
   await Ticket.findByIdAndUpdate(params.id, body);
 
-  return NextResponse({ message: "New ticket added successfully" });
+  return NextResponse(
+    { message: "New ticket added successfully" },
+    { status: 200 }
+  );
 }
 
 export async function GET(request, { params }) {
