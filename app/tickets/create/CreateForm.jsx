@@ -22,7 +22,7 @@ export default function CreateForm() {
     event.preventDefault();
     setIsLoading(true);
     try {
-      const res = await fetch(process.env.API_URL + "/api/tickets", {
+      const res = await fetch("/api/tickets", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

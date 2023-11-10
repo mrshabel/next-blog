@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
-  const res = await fetch(process.env.API_URL + "/api/tickets");
+  const res = await fetch("/api/tickets");
   const data = await res.json();
 
   const params = data.map((param) => ({ id: param.id }));
@@ -9,7 +9,7 @@ export async function generateStaticParams() {
 }
 
 async function getTicket(id) {
-  const res = await fetch(`${process.env.API_URL}/api/tickets/${id}`, {
+  const res = await fetch(`/api/tickets/${id}`, {
     next: { revalidate: 0 },
   });
 
