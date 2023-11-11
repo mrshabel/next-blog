@@ -1,5 +1,7 @@
 import { notFound } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 export async function generateStaticParams() {
   const res = await fetch(process.env.API_URL + "/api/tickets");
   const data = await res.json();
@@ -10,6 +12,7 @@ export async function generateStaticParams() {
 
 async function getTicket(id) {
   try {
+    console.log(process.env.API_URL, "api");
     const res = await fetch(`${process.env.API_URL}/api/tickets/${id}`, {
       next: { revalidate: 0 },
     });
@@ -25,7 +28,7 @@ async function getTicket(id) {
 }
 
 export default async function TicketDetails({ params }) {
-  const ticket = await getTicket(params?.id);
+  const ticket = await getTicket(params.id);
 
   return (
     <main>

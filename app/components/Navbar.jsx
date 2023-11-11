@@ -1,4 +1,4 @@
-import { UserButton } from "@clerk/nextjs";
+// import { UserButton } from "@clerk/nextjs";
 import Navlinks from "./Navlinks";
 
 export default function Navbar() {
@@ -6,7 +6,7 @@ export default function Navbar() {
     <nav className="flex justify-between">
       <h1>Shabel Helpdesk</h1>
       <Navlinks />
-      <UserButton afterSignOutUrl="/" />
+      {/* <UserButton afterSignOutUrl="/" /> */}
     </nav>
   );
 }
