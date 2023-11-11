@@ -1,14 +1,22 @@
 import { notFound } from "next/navigation";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
-export async function generateStaticParams() {
-  const res = await fetch(process.env.API_URL + "/api/tickets");
-  const data = await res.json();
+// export async function generateStaticParams() {
+//   try {
+//     const res = await fetch(process.env.API_URL + "/api/tickets");
+//     const data = await res.json();
 
-  const params = data.map((param) => ({ id: param.id }));
-  return params;
-}
+//     if (!res.ok) {
+//       return null;
+//     }
+
+//     const params = data.map((param) => ({ id: param.id }));
+//     return params;
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
 
 async function getTicket(id) {
   try {
